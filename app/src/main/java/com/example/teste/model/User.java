@@ -7,10 +7,10 @@ public class User {
     String pasword;
     String email;
     String number;
-    Date dateBirth;
+    String dateBirth;
     String sexo;
 
-    public User(String name, String pasword, String email, String number, Date dateBirth, String sexo) {
+    public User(String name, String pasword, String email, String number, String dateBirth, String sexo) {
         this.name = name;
         this.pasword = pasword;
         this.email = email;
@@ -51,11 +51,11 @@ public class User {
         this.number = number;
     }
 
-    public Date getDateBirth() {
+    public String getDateBirth() {
         return dateBirth;
     }
 
-    public void setDateBirth(Date dateBirth) {
+    public void setDateBirth(String dateBirth) {
         this.dateBirth = dateBirth;
     }
 

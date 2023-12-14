@@ -11,10 +11,13 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.teste.comon.Comon;
 
 public class WelcomeActivity extends AppCompatActivity {
+
+    TextView nome, email, numero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,18 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        nome = findViewById(R.id.tvName);
+        email = findViewById(R.id.tvEmail);
+        numero = findViewById(R.id.tvNumber);
+
+        if(getIntent().hasExtra("name") && getIntent().hasExtra("number")&& getIntent().hasExtra("email")){
+            String name = getIntent().getStringExtra("name");
+            String number = getIntent().getStringExtra("number");
+            String mail = getIntent().getStringExtra("email");
+            nome.setText(name);
+            email.setText(mail);
+            numero.setText(number);
+        }
     }
 
     @Override

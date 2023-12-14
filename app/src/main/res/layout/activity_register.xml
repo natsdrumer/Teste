@@ -34,7 +34,7 @@
 
             <EditText
                 android:id="@+id/eName"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
@@ -43,7 +43,7 @@
 
             <EditText
                 android:id="@+id/eNumber"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="phone"
@@ -52,7 +52,7 @@
 
             <EditText
                 android:id="@+id/eEmail"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textEmailAddress"
@@ -61,7 +61,7 @@
 
             <EditText
                 android:id="@+id/eDate"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date"
@@ -72,7 +72,7 @@
 
             <EditText
                 android:id="@+id/ePass"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberPassword"
@@ -86,18 +86,20 @@
                 android:layout_marginTop="20dp">
 
                 <Button
-                    android:id="@+id/btnUp"
+                    android:id="@+id/btnR"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/update"
+                    android:text="@string/register"
+                    android:background="@color/greenbtn"
                     />
 
                 <Button
-                    android:id="@+id/btnCan"
+                    android:id="@+id/btnC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cancel"
                     android:layout_marginLeft="150dp"
+                    android:background="@color/redbtn"
                     />
 
             </LinearLayout>
