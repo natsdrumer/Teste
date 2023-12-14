@@ -33,7 +33,7 @@
                 android:src="@drawable/user"/>
 
             <EditText
-                android:id="@+id/etName"
+                android:id="@+id/eName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -42,7 +42,7 @@
                 android:layout_marginTop="15dp"/>
 
             <EditText
-                android:id="@+id/etNumber"
+                android:id="@+id/eNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -51,7 +51,7 @@
                 android:layout_marginTop="15dp"/>
 
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/eEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -60,7 +60,7 @@
                 android:layout_marginTop="15dp"/>
 
             <EditText
-                android:id="@+id/etDate"
+                android:id="@+id/eDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -71,7 +71,7 @@
 
 
             <EditText
-                android:id="@+id/etPass"
+                android:id="@+id/ePass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
