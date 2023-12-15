@@ -2,17 +2,24 @@ package com.example.teste;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.teste.comon.Comon;
 import com.example.teste.model.User;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -21,10 +28,18 @@ public class RegisterActivity extends AppCompatActivity {
 
     Button btnR, btnC;
 
+    RadioGroup rg_sexo;
+
+    String sexo;
+
+    Calendar myCalender;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
 
         etname = findViewById(R.id.eName);
         etnumber = findViewById(R.id.eNumber);
@@ -34,15 +49,39 @@ public class RegisterActivity extends AppCompatActivity {
         btnC = findViewById(R.id.btnC);
         btnR = findViewById(R.id.btnR);
         titulo = findViewById(R.id.titlenew);
+        rg_sexo = findViewById(R.id.rg_sexo);
 
-        if(getIntent().hasExtra("tittle")){
-            String title = getIntent().getStringExtra("tittle");
-            titulo.setText(title);
+        final Calendar calendar = Calendar.getInstance();
+
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (DatePicker view, int year, int monthOfYear, int dayOfMonth) -> {
+                    // Update the EditText with the selected date
+                    Calendar selectedDate = Calendar.getInstance();
+                    selectedDate.set(year, monthOfYear, dayOfMonth);
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    date.setText(dateFormat.format(selectedDate.getTime()));
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+
+        );
+
+
+        date.setOnClickListener(v -> datePickerDialog.show());
+
+
+        if(getIntent().hasExtra("position")){
+            int position = getIntent().getIntExtra("position", 0);
+            titulo.setText(R.string.tittleupdate);
             btnR.setText(R.string.update);
-            etnumber.setText(Comon.contactos.get(0).getNumber());
-            etemail.setText(Comon.contactos.get(0).getEmail());
-            etpass.setText(Comon.contactos.get(0).getPasword());
-            date.setText(Comon.contactos.get(0).getDateBirth().toString());
+            etname.setText(Comon.contactos.get(position).getName());
+            etnumber.setText(Comon.contactos.get(position).getNumber());
+            etemail.setText(Comon.contactos.get(position).getEmail());
+            etpass.setText(Comon.contactos.get(position).getPasword());
+            date.setText(Comon.contactos.get(position).getDateBirth().toString());
 
 
             btnR.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                     String number = etnumber.getText().toString();
                     String pass = etpass.getText().toString();
                     String data = date.getText().toString();
-                    String sexo = "";
+
 
                     Comon.contactos.get(0).setName(name);
                     Comon.contactos.get(0).setEmail(email);
@@ -74,10 +113,36 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
 
+            btnC.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    etemail.setText("");
+                    etpass.setText("");
+                    etname.setText("");
+                    etnumber.setText("");
+                    date.setText("");
+
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+
+            });
+
 
 
 
         }
+
+        rg_sexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rbfem){
+                    fem();
+                }else if (i == R.id.rbmasc){
+                    masc();
+                }
+            }
+        });
 
         btnC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
                 etname.setText("");
                 etnumber.setText("");
                 date.setText("");
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
@@ -100,17 +166,40 @@ public class RegisterActivity extends AppCompatActivity {
                 String number = etnumber.getText().toString();
                 String pass = etpass.getText().toString();
                 String data = date.getText().toString();
-                String sexo = "";
+
 
                 Comon.contactos.add(new User(name, pass, email, number, data, sexo));
+                Comon.login.add(Comon.contactos.get(0));
+                //Log.d(Comon.contactos.get(), "onClick: ");
 
                 Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-                intent.putExtra("name", Comon.contactos.get(0).getName());
-                intent.putExtra("emai", Comon.contactos.get(0).getEmail());
-                intent.putExtra("number", Comon.contactos.get(0).getNumber());
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("number", number);
+
+                etemail.setText("");
+                etpass.setText("");
+                etname.setText("");
+                etnumber.setText("");
+
                 startActivity(intent);
             }
         });
+
+
+
+
+
+    }
+
+
+
+    private void masc() {
+        sexo = "Masculino";
+    }
+
+    private void fem() {
+        sexo = "Feminino";
 
     }
 }

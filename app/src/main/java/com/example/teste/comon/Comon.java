@@ -8,4 +8,6 @@ import java.util.List;
 public class Comon {
     public  static List<User> contactos = new ArrayList<>();
     public static List<User> login = new ArrayList<>();
+
+
 }

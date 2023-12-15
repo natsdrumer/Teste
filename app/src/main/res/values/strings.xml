@@ -22,8 +22,8 @@
     <string name="number">Number</string>
     <string name="masc">Masculino</string>
     <string name="fem">Feminino</string>
-    <string name="sexo">Sexo</string>
-    <string name="password">Passwod</string>
+    <string name="sexo">Sexo: </string>
+    <string name="password">Password</string>
     <string name="date">Data de Nascimento</string>
     <string name="erro">Password ou Email errado</string>
 </resources>

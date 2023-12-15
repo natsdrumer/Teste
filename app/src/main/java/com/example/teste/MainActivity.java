@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.teste.comon.Comon;
+import com.example.teste.model.User;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btn= findViewById(R.id.btncont);
         registerForContextMenu(btn);
+
+        
 
     }
 

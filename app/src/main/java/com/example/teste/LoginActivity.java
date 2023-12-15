@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(email.equals(e) && pass.equals(p)){
                     Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                     intent.putExtra("name", Comon.contactos.get(0).getName());
-                    intent.putExtra("emai", Comon.contactos.get(0).getEmail());
+                    intent.putExtra("email", Comon.contactos.get(0).getEmail());
                     intent.putExtra("number", Comon.contactos.get(0).getNumber());
                     Comon.login.add(Comon.contactos.get(0));
                     startActivity(intent);

@@ -40,6 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         holder.nameview.setText(contactos.get(position).getName());
         holder.numberview.setText(contactos.get(position).getNumber());
+        holder.emailview.setText(contactos.get(position).getEmail());
 
         holder.next.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

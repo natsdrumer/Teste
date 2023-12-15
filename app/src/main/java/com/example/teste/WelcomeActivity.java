@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.teste.comon.Comon;
@@ -18,7 +21,7 @@ import com.example.teste.comon.Comon;
 public class WelcomeActivity extends AppCompatActivity {
 
     TextView nome, email, numero;
-
+    ImageButton btnCo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         nome = findViewById(R.id.tvName);
         email = findViewById(R.id.tvEmail);
         numero = findViewById(R.id.tvNumber);
+        btnCo = findViewById(R.id.btnCo);
 
         if(getIntent().hasExtra("name") && getIntent().hasExtra("number")&& getIntent().hasExtra("email")){
             String name = getIntent().getStringExtra("name");
@@ -37,6 +41,14 @@ public class WelcomeActivity extends AppCompatActivity {
             email.setText(mail);
             numero.setText(number);
         }
+
+        btnCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -56,9 +68,14 @@ public class WelcomeActivity extends AppCompatActivity {
         }else if (id == R.id.logout){
             logout();
             return true;
-        }else {
-            return false;
-        }
+        }else if(id == R.id.contact) {
+            updateUser();
+            return true;
+
+        } else{
+                return false;
+            }
+
     }
 
     private void logout() {
@@ -68,7 +85,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Comon.contactos.remove(0);
                         Comon.login.remove(0);
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
@@ -89,6 +105,14 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(Settings.ACTION_SETTINGS);
         startActivity(intent);
 
+    }
+
+    private void updateUser() {
+
+        Intent intent = new Intent(this, RegisterActivity.class);
+        int position = 0;
+        intent.putExtra("position",position);
+        startActivity(intent);
     }
 
 

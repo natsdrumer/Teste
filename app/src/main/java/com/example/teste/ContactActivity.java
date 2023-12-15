@@ -40,6 +40,15 @@ public class ContactActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
+        contact.add(new Contact("nata", "natslevy@gmail.com", "9510453"));
     }
 
     @Override
@@ -68,7 +77,7 @@ public class ContactActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, name + number + email);
+        intent.putExtra(Intent.EXTRA_TEXT, "name: " + name +"\n" + "number: " +  number + "\n" + "email: " + email);
 
         startActivity(intent);
 
@@ -77,24 +86,25 @@ public class ContactActivity extends AppCompatActivity {
 
     private void call() {
         int position = adapter.getPosition();
-        String number = contact.get(position).getNumber();
+        String number = "tel:" + contact.get(position).getNumber();
         Uri uri = Uri.parse(number);
 
-        Intent intent = new Intent(Intent.ACTION_DIAL,uri );
+        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
         startActivity(intent);
     }
 
     private void sendSms() {
         int position = adapter.getPosition();
-        String number = contact.get(position).getNumber();
-        Intent intent = new Intent(Intent.ACTION_DIAL);
+        String number = "sms:" + contact.get(position).getNumber();
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_SEND, uri);
 
         startActivity(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_options, menu);
         return true;
     }
 
@@ -126,7 +136,7 @@ public class ContactActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Comon.contactos.remove(0);
+
                         Comon.login.remove(0);
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
@@ -150,9 +160,10 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     private void updateUser() {
-        Comon.contactos.remove(0);
+
         Intent intent = new Intent(this, RegisterActivity.class);
-        intent.putExtra("tittle", R.string.tittleupdate);
+        int position = 0;
+        intent.putExtra("position",position);
         startActivity(intent);
     }
 }
